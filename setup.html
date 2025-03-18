@@ -46,14 +46,30 @@
             padding: 20px;
             box-sizing: border-box;
         }
+                    @media (max-width: 768px){
+            #page1 {
+                width: 40%;
+            }
+            #page2 {
+                width: 60%;
+            }
+
+            button {
+                width: 100%;
+            }
+            input, select {
+                width: 100%;
+            }
+            }
   </style>
 </head>
 <body>
   <div id="page1">
     <h2>HR Employee Information</h2>
-    <button onclick="showStylePage()">Employee Setup</button>
-    <button onclick="showColorPage()">Attendance</button>
-    <button onclick="showSizePage()">Payment</button>      
+       <button onclick="window.location.href = 'employee setup.html'">Employee Setup</button>
+        <button onclick="showColorPage()">Attendance</button>
+        <button onclick="window.location.href = 'payment setup.html'">Employee Salary</button>      
+       
 </div>
 
 <div id="page2">
