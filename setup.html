@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Setup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      display: flex;     
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input, textarea, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    button {
+      width: 200px;
+    }
+    .success-message {
+      text-align: center;
+      color: green;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+    body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+        }
+        #page1 {
+            width: 20%;
+            background-color: #f3eeee;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #page2 {
+            width: 80%;
+            background-color: #fcf8f8;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+  </style>
+</head>
+<body>
+  <div id="page1">
+    <h2>HR Employee Information</h2>
+    <button onclick="showStylePage()">Employee Setup</button>
+    <button onclick="showColorPage()">Attendance</button>
+    <button onclick="showSizePage()">Payment</button>      
+</div>
+
+<div id="page2">
+  <!-- Style Page -->
+  <div class="container" >
+    <h2>Employee Information</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    
+    <label for="age">Age:</label>
+    <input type="number" id="age" required>
+    
+    <label for="address">Address:</label>
+    <textarea id="address" rows="3" required></textarea>
+    
+    <label for="education">Education:</label>
+    <input type="text" id="education" required>
+    
+    <label for="nationality">Nationality:</label>
+    <input type="text" id="nationality" required>
+    
+    <label for="id">Employee ID:</label>
+    <input type="text" id="id" required>
+    
+    <label for="department">Department:</label>
+    <input type="text" id="department" required>
+    
+    <label for="joinDate">Join Date:</label>
+    <input type="date" id="joinDate" required>
+    
+    <span>
+    <button onclick="addProduct()">Save</button>
+    <button onclick="cancelProduct()">Cancel</button></span>
+  
+  <div id="message" class="success-message"></div>
+</div>
+
+  <script>
+
+        // Add  to Local Storage
+        function addProduct() {
+            const name = document.getElementById('name').value;
+            const id = document.getElementById('id').value;
+            const joinDate = document.getElementById('joinDate').value;
+            const department = document.getElementById('department').value;
+
+            if (name && id && joinDate && department) {
+                const product = { name, id, joinDate, department };
+                let products = JSON.parse(localStorage.getItem('products')) || [];
+                products.push(product);
+                localStorage.setItem('products', JSON.stringify(products));
+
+                // to Main Page
+                window.location.href = 'employee setup.html';
+            } else {
+                alert('Please fill all fields');
+            }
+        }
+
+  </script>
+</body>
+</html>

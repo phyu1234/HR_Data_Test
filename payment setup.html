@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Setup</title>
+  <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+        }
+        #page1 {
+            width: 20%;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #page2 {
+            width: 80%;
+            background-color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #cad4c4;
+            border-radius: 5px;          
+        }
+        #page1[button]{
+            width: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+        input, select {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #fcadad;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .action-buttons button {
+            margin: 0 5px;
+        }
+        .tab-button {
+            background-color: rgb(78, 71, 102);
+            color: rgb(188, 228, 197);
+        } 
+  </style>
+</head>
+<body>
+  <div id="page1">
+    <h2>HR Employee Information</h2>
+    <button onclick="window.location.href = 'employee setup.html'">Employee Setup</button>
+    <button onclick="showColorPage()">Attendance</button>
+    <button class="tab-button" onclick="window.location.href = 'payment setup.html'">Payment</button>       
+</div>
+
+<div id="page2">
+    <!-- Size Page -->
+    <div id="sizePage">
+    <!-- Search -->
+    <h2>Search Employee Information</h2>
+    <input type="text" id="searchStyle" placeholder="Search by employee name..." oninput="searchProduct()">
+    <button type="button" onclick="exportToExcel()">Export to Excel</button>
+    <h2>Create New Employee Payment</h2>       
+    <!-- Create -->
+    <button onclick="window.location.href = 'create.html'" style="background-color: rgb(69, 187, 69);">Create</button>
+
+    <!-- Result -->
+    <h2>Employee Payment List</h2>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ID </th>
+                <th>Join Date</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- fill it -->
+        </tbody>
+    </table>
+</div>
+</div>
+
+  <script>
+    const form = document.getElementById('dataForm');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        age: document.getElementById('age').value,
+        address: document.getElementById('address').value,
+        education: document.getElementById('education').value,
+        nationality: document.getElementById('nationality').value,
+        skill: document.getElementById('skill').value,
+        language: document.getElementById('language').value,
+        birthday: document.getElementById('joinDate').value
+      };
+
+      // Save data to localStorage
+      const storedData = JSON.parse(localStorage.getItem('formData')) || [];
+      storedData.push(formData);
+      localStorage.setItem('formData', JSON.stringify(storedData));
+
+      // Show success message
+      document.getElementById('message').textContent = 'Form successfully submitted!';
+      
+      // Redirect to the results page after 2 seconds
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
