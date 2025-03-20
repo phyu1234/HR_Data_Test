@@ -1,119 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HR Employee</title>
-    <style>
-        body {
-            display: flex;
-            margin: 0;
-            height: 100vh;
-        }
-        #page1 {
-            width: 20%;
-            background-color: #f4f4f4;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        #page2 {
-            width: 80%;
-            background-color: #fff;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        button {
-            display: block;
-            margin: 10px 0;
-            padding: 10px;
-            width: 200px;
-            border: 1px solid #cad4c4;
-            border-radius: 5px;          
-        }
-        #page1[button]{
-            width: 50px;
-        }
-        .hidden {
-            display: none;
-        }
-        input, select {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #fcadad;
-            border-radius: 5px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        .action-buttons button {
-            margin: 0 5px;
-        }
-                @media (max-width: 768px){
-            #page1 {
-                width: 40%;
-            }
-            #page2 {
-                width: 60%;
-            }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            button {
-                width: 100%;
-            }
-            input, select {
-                width: 100%;
-            }
-            }
-    </style>
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="style.css">
+
+	<title>HR_Data_Test</title>
 </head>
 <body>
-    <div id="page1">
-        <h2>Set Up</h2>
-        <button onclick="window.location.href = 'employee setup.html'">Employee Setup</button>
-        <button onclick="showColorPage()">Attendance</button>
-        <button onclick="window.location.href = 'payment setup.html'">Payment</button>      
-    </div>
-    <div id="page2">
-        <h2>HR Employee Information</h2>
-        <input type="search" id="searchStyle" placeholder="Search by employee name..." oninput="searchProduct()">
-        <input type="submit">
 
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text">Setup</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="index.html">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="employee.html">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Employee</span>
+				</a>
+			</li>			
+			<li>
+				<a href="attendance.html">
+					<i class='bx bxs-calendar-check'></i>
+					<span class="text">Attendance</span>
+				</a>
+			</li>
+			<li>
+				<a href="payroll.html">
+					<i class='bx bxs-credit-card' ></i>
+					<span class="text">PayRoll</span>
+				</a>
+			</li>
 
-  
-    </div>
+		</ul>
+	</section>
+	<section id="content">
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">HR Employee Information</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+		</nav>
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Employee Information & Attendance</h1>
+				</div>
+			</div>
 
-    <script>
-        // Function to show Style Page
-        function showStylePage() {
-            document.getElementById('stylePage').classList.remove('hidden');
-            document.getElementById('sizePage').classList.add('hidden');
-            document.getElementById('colorPage').classList.add('hidden');
-        }
+			<ul class="box-info">
+				<li>
+					<i class='bx bxs-group' ></i>
+					<span class="text">
+						<h3></h3>
+						<p>Total Employee</p>
+					</span>
+				</li>				
+				<li>
+					<i class='bx bxs-calendar-check' ></i>
+					<span class="text">
+						<h3></h3>
+						<p>Attendance</p>
+					</span>
+				</li>
+			</ul>
 
-        // Function to show Color Page
-        function showColorPage() {
-            document.getElementById('colorPage').classList.remove('hidden');
-            document.getElementById('sizePage').classList.add('hidden');
-            document.getElementById('stylePage').classList.add('hidden');
-        }
+				</div>
+			</div>
+		</main>
+	</section>
+	
 
-                // Function to show Size Page
-                function showSizePage() {
-            document.getElementById('sizePage').classList.remove('hidden');
-            document.getElementById('stylePage').classList.add('hidden');
-            document.getElementById('colorPage').classList.add('hidden');
-        }
-
-    </script>
+	<script src="script.js"></script>
 </body>
 </html>
