@@ -9,7 +9,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="style.css">
     <style>
-        	table {
+ 	table {
 		width: 100%;
 		border-collapse: collapse;
 		margin-top: 20px;
@@ -24,10 +24,9 @@
 	}
     button {
             display: block;
-            margin: 50px 10px 50px 300px;
+            margin: center;
             padding: 10px;
             width: 100px;
-            height: 50px;
             border: 1px solid #cad4c4;
             border-radius: 15px;          
         }
@@ -110,25 +109,30 @@
 			</div>
 
 			<ul class="box-info">
-				<li>
+				<a href="empsetup.html"> <button style="background-color: rgb(15, 212, 114);">New Employee</button></a>					<!--		<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
 						<h3></h3>
 						<p>Total Employee</p>
 					</span>
-				</li>	
-                    <button  onclick="">Setup</button>		
-			</ul>
+				</li>     -->	  
+				        <!-- Search -->
+				<input type="text" id="searchStyle" placeholder="Search by employee name..." oninput="searchProduct()"           padding: 10px;
+				style="border: 1px solid #b0bea7; border-radius: 15px; background-color: rgb(211, 223, 217); " >     	
+			</ul><br> 
 
 				</div>
                 <h2>Employee Details</h2>
                 <table id="productTable">
                     <thead>
                         <tr>
+                            <th>Employee ID</th>							
                             <th>Name</th>
-                            <th>ID </th>
-                            <th>Join Date</th>
+							<th>Age</th>
+							<th>Phone Number</th>
+							<th>Address</th>
                             <th>Department</th>
+                            <th>Join Date</th>							
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -141,7 +145,57 @@
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
-     
+	<script>
+		// Load products from Local Storage
+		let products = JSON.parse(localStorage.getItem('products')) || [];
+
+		// Display Products in the Table
+		function displayProducts(productList) {
+			const tableBody = document.querySelector('#productTable tbody');
+			tableBody.innerHTML = '';
+
+			productList.forEach((product, index) => {
+				const newRow = document.createElement('tr');
+				newRow.innerHTML = `
+					<td>${product.id}</td>				
+					<td>${product.name}</td>
+					<td>${product.age}</td>
+					<td>${product.tel}</td>
+					<td>${product.address}</td>
+					<td>${product.department}</td>
+					<td>${product.joinDate}</td>					
+					<td class="action-buttons">
+						<button onclick="editProduct(${index})" style="background-color: rgb(137, 137, 230);">Edit</button>
+						<button onclick="deleteProduct(${index})" style="background-color:  rgb(223, 51, 51);">Delete</button>
+					</td>
+				`;
+				tableBody.appendChild(newRow);
+			});
+		} 
+				   // Edit 
+				   function editProduct(index) {
+			localStorage.setItem('editIndex', index); // For edit
+			window.location.href = 'empedit.html'; // to Edit Page
+		}  
+		// Delete
+		function deleteProduct(index) {
+			if (confirm('Are you sure you want to delete this product?')) {
+				products.splice(index, 1); 
+				localStorage.setItem('products', JSON.stringify(products)); 
+				displayProducts(products);
+			}
+		}   
+		// Search by Style
+		function searchProduct() {
+			const searchTerm = document.getElementById('searchStyle').value.toLowerCase();
+			const filteredProducts = products.filter(product => 
+				product.name.toLowerCase().includes(searchTerm)
+			);
+			displayProducts(filteredProducts);
+		}
+		displayProducts(products);
+		
+</script> 
 	
 
 	<script src="script.js"></script>
