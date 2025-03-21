@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="style.css">
+    <style>
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input, textarea, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    .button-group {
+            display: flex;
+            gap: 10px;
+        }
+        .button-group button {
+            flex: 1;
+        }
+    </style>
+
+	<title>HR_Data_Test</title>
+</head>
+<body>
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text">Setup</span>
+		</a>
+		<ul class="side-menu top">
+			<li >
+				<a href="index.html">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="employee.html">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Employee</span>
+				</a>
+			</li>			
+			<li>
+				<a href="attendance.html">
+					<i class='bx bxs-calendar-check'></i>
+					<span class="text">Attendance</span>
+				</a>
+			</li>
+			<li>
+				<a href="payroll.html">
+					<i class='bx bxs-credit-card' ></i>
+					<span class="text">PayRoll</span>
+				</a>
+			</li>
+
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">HR Employee Information</a>
+
+		
+		<!--	<a href="#" class="profile">
+				<img src="img/people.png">
+			</a>-->
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+            <div class="container" >
+                <h2>Edit Employee Information </h2>
+
+                <input type="text" id="name">
+                
+                <input type="number" id="age" >
+
+                <input type="number" id="tel" >               
+                
+                <textarea id="address" rows="3" ></textarea>       
+                
+                <input type="text" id="id" >
+                
+                <input type="text" id="department" >
+                
+                <input type="date" id="joinDate" >
+                
+                <div class="button-group">
+                    <button onclick="updateProduct()">Update</button>
+                    <button onclick="cancelEdit()">Cancel</button>
+                </div>             
+            </div>
+            
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+    <script>
+
+
+        // Load the product to edit
+        const editIndex = localStorage.getItem('editIndex');
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+        const product = products[editIndex];
+
+                // Populate the form with the data
+        document.getElementById('name').value = product.name;
+        document.getElementById('id').value = product.id;
+        document.getElementById('joinDate').value = product.joinDate;
+        document.getElementById('department').value = product.department;
+        document.getElementById('age').value = product.age;
+        document.getElementById('tel').value = product.tel;
+        document.getElementById('address').value = product.address;
+
+        // Update 
+        function updateProduct() {
+            const name = document.getElementById('name').value;
+            const id = document.getElementById('id').value;
+            const joinDate = document.getElementById('joinDate').value;
+            const department = document.getElementById('department').value;
+            const age = document.getElementById('age').value;  
+            const tel = document.getElementById('tel').value;   
+            const address = document.getElementById('address').value;                    
+
+
+            if (name && id && joinDate && department && age && tel && address) {
+                const product = { name, id, joinDate, department, age, tel, address };
+                products[editIndex] = updatedProduct; // Update the product in the array
+                localStorage.setItem('products', JSON.stringify(products)); // Update Local Storage
+                window.location.href = 'employee.html'; // Redirect to Main Page
+            } else {
+                alert('Please fill all fields');
+            }
+        }
+
+        // Cancel Edit
+        function cancelEdit() {
+            window.location.href = 'employee.html'; // Redirect to Main Page without saving changes
+        }
+            </script>
+
+	<script src="script.js"></script>
+</body>
+</html>

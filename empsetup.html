@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="style.css">
+    <style>
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input, textarea, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    .button-group {
+            display: flex;
+            gap: 10px;
+        }
+        .button-group button {
+            flex: 1;
+        }
+    </style>
+
+	<title>HR_Data_Test</title>
+</head>
+<body>
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text">Setup</span>
+		</a>
+		<ul class="side-menu top">
+			<li >
+				<a href="index.html">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="employee.html">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Employee</span>
+				</a>
+			</li>			
+			<li>
+				<a href="attendance.html">
+					<i class='bx bxs-calendar-check'></i>
+					<span class="text">Attendance</span>
+				</a>
+			</li>
+			<li>
+				<a href="payroll.html">
+					<i class='bx bxs-credit-card' ></i>
+					<span class="text">PayRoll</span>
+				</a>
+			</li>
+
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">HR Employee Information</a>
+
+		
+		<!--	<a href="#" class="profile">
+				<img src="img/people.png">
+			</a>-->
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+            <div class="container" >
+                <h2>Employee Information Setup</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+                
+                <label for="age">Age:</label>
+                <input type="number" id="age" required>
+
+                <label for="tel">Phone Number:</label>
+                <input type="number" id="tel" required>               
+                
+                <label for="address">Address:</label>
+                <textarea id="address" rows="3" required></textarea>       
+                
+                <label for="id">Employee ID:</label>
+                <input type="text" id="id" required>
+                
+                <label for="department">Department:</label>
+                <input type="text" id="department" required>
+                
+                <label for="joinDate">Join Date:</label>
+                <input type="date" id="joinDate" required>
+                
+                <div class="button-group">
+                    <button onclick="addProduct()">Save</button>
+                    <button onclick="cancelEdit()">Cancel</button>
+                </div>             
+            </div>
+            
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+    <script>
+
+        // Add  to Local Storage
+        function addProduct() {
+            const name = document.getElementById('name').value;
+            const id = document.getElementById('id').value;
+            const joinDate = document.getElementById('joinDate').value;
+            const department = document.getElementById('department').value;
+            const age = document.getElementById('age').value;  
+            const tel = document.getElementById('tel').value;   
+            const address = document.getElementById('address').value;                    
+
+            if (name && id && joinDate && department && age && tel && address) {
+                const product = { name, id, joinDate, department, age, tel, address };
+                let products = JSON.parse(localStorage.getItem('products')) || [];
+                products.push(product);
+                localStorage.setItem('products', JSON.stringify(products));
+
+                // to Main Page
+                window.location.href = 'employee.html';
+            } else {
+                alert('Please fill all fields');
+            }
+        }
+                // Cancel Edit
+                function cancelEdit() {
+            window.location.href = 'employee.html'; 
+                }
+            </script>
+
+	<script src="script.js"></script>
+</body>
+</html>
